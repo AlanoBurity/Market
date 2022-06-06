@@ -38,19 +38,19 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   li.addEventListener('click', cartItemClickListener);
   return li;
 };
-function aplicarLoading = () => {
+
+function aplicarLoading() {
     const criaSection = document.createElement('section');
     criaSection.textContent = 'Carregando...';
     criaSection.className = 'loading';
     document.querySelector('.items').appendChild(criaSection);
-  };
-
+  }
 function encerraLoading() {
     document.querySelector('.loading').remove();
-   };
+   }
 
 window.onload = async () => {
-  criaLoading();
+  aplicarLoading();
   await fecthProducts();
   encerraLoading();
 };
