@@ -5,6 +5,7 @@ const createProductImageElement = (imageSource) => {
   return img;
 };
 
+
 const createCustomElement = (element, className, innerText) => {
   const e = document.createElement(element);
   e.className = className;
@@ -37,5 +38,19 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   li.addEventListener('click', cartItemClickListener);
   return li;
 };
+function aplicarLoading = () => {
+    const criaSection = document.createElement('section');
+    criaSection.textContent = 'Carregando...';
+    criaSection.className = 'loading';
+    document.querySelector('.items').appendChild(criaSection);
+  };
 
-window.onload = () => {};
+function encerraLoading() {
+    document.querySelector('.loading').remove();
+   };
+
+window.onload = async () => {
+  criaLoading();
+  await fecthProducts();
+  encerraLoading();
+};
