@@ -38,7 +38,7 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-function aplicarLoading() {
+function aplicaLoading() {
     const criaSection = document.createElement('section');
     criaSection.textContent = 'Carregando...';
     criaSection.className = 'loading';
@@ -49,7 +49,6 @@ function encerraLoading() {
    }
 
 window.onload = async () => {
-  aplicarLoading();
-  await fecthProducts();
+  aplicaLoading();
   encerraLoading();
 };

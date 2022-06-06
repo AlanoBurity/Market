@@ -12,4 +12,4 @@ if (typeof module !== 'undefined') {
   };
 }
 
-fetchProducts('computador');
+/* fetchProducts('computador'); */
