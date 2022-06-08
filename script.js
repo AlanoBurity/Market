@@ -59,5 +59,5 @@ function aplicaLoading() {
 window.onload = async () => {
   aplicaLoading();
   await listagemProdutos();
-  encerraLoading();
+   encerraLoading();
 };
