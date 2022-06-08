@@ -56,22 +56,33 @@ function aplicaLoading() {
   function encerraLoading() {
     document.querySelector('.loading').remove();
   }
-const basketBuy = async (itemid) => {
-  const obj = await fetchItem(itemid);
-  const listarCarrinho = document.querySelector('.cart__items');
-  listarCarrinho.appendChild(createCartItemElement(obj));
-};
-
-const pegarBtn = async () => {
-  const btn = document.querySelectorAll('.item__add');
-  btn.forEach((item) => item.addEventListener('click', () => {
-    const parent = item.parentElement;
-    basketBuy(getSkuFromProductItem(parent));
-  }));
-};
-window.onload = async () => {
-  aplicaLoading();
-  await listagemProdutos();
-  encerraLoading();
-  pegarBtn();
+  
+  const addToCart = async (itemSku) => {
+    const obj = await fetchItem(itemSku);
+    const listToCart = document.querySelector('.cart__items');
+    listToCart.appendChild(createCartItemElement(obj));
+  };
+  
+  const getButtons = async () => {
+    const getBtn = document.querySelectorAll('.item__add');
+    getBtn.forEach((item) => item.addEventListener('click', () => {
+      const parent = item.parentElement;
+      addToCart(getSkuFromProductItem(parent));
+    }));
+  };
+  function limparCompras() {
+  const lista = document.querySelector('.cart__items');
+  const esvaziarCarrinho = document.querySelector('.empty-cart');
+  const limparCarrinho = () => {
+    lista.innerHTML = '';
+  };
+  esvaziarCarrinho.addEventListener('click', limparCarrinho);
+}
+  
+  window.onload = async () => {
+    aplicaLoading();
+    await listagemProdutos();
+    encerraLoading();
+    getButtons();
+    limparCompras();
 };

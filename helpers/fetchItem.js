@@ -5,7 +5,6 @@ const fetchItem = async (item) => {
   const { id, title, price } = await resposta.json();
   return { id, title, price };
 };
-fetchItem('MLB1615760527');
 
 if (typeof module !== 'undefined') {
   module.exports = {
