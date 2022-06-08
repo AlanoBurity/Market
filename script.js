@@ -36,12 +36,6 @@ const listagemProdutos = async () => {
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
 const cartItemClickListener = (event) => {
-  const capturarElemento = document.querySelector('.items');
-  capturarElemento.forEach((ell) => {
-    
-  capturarElemento.appendChild(carrinho);
-  });
-  const item = fetchitems('MLB1341706310');
 };
 
 const createCartItemElement = ({ id: sku, title: name, price: salePrice }) => {
@@ -61,28 +55,9 @@ function aplicaLoading() {
   function encerraLoading() {
     document.querySelector('.loading').remove();
   }
-  function addButtonsEvent() {
-    const items = document.querySelectorAll('.item');
-      items.forEach((item) => {
-        const sku = getSkuFromProductItem(item);
-        const button = item.querySelector('button');
-        button.addEventListener('click', async () => {
-          const objeto = await fetchItem(sku);
-          const criaObj = {
-            sku: objeto.id,
-            name: objeto.title,
-            salePrice: objeto.price,
-          };
-          ol.appendChild(createCartItemElement(criaObj));
-          saveItemLocalStorage();
-          sumPrices();
-        });
-      }); 
-  }
 
 window.onload = async () => {
   aplicaLoading();
   await listagemProdutos();
-  addButtonsEvent();
   encerraLoading();
 };
