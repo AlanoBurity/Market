@@ -4,10 +4,7 @@ const createProductImageElement = (imageSource) => {
   img.src = imageSource;
   return img;
 };
-function salvarItem() {
- const capturarItem = document.querySelector('cart_items').innerHTML;
-    getSavedCartItems(capturarItem);
-}
+
 const createCustomElement = (element, className, innerText) => {
   const e = document.createElement(element);
   e.className = className;
@@ -69,7 +66,6 @@ const getButtons = async () => {
   getBtn.forEach((item) => item.addEventListener('click', () => {
     const parent = item.parentElement;
     addToCart(getSkuFromProductItem(parent));
-    salvarItem();
   }));
 };
 // Requisito 10: Limpar o Carrinho de compras
@@ -84,9 +80,9 @@ const getButtons = async () => {
 
 // ================================================================================================================== 
   window.onload = async () => {
+    aplicaLoading();
     await listagemProdutos();
     await getButtons();
-    aplicaLoading();
     encerraLoading();
     limparCompras();
 };
